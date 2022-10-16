@@ -1,0 +1,54 @@
+.img{
+    width: 50px;
+    display: block;
+    margin: auto;
+}
+
+.button{
+    color: #6658F6;
+    font-size: 16px;
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 600;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    margin: 8px;
+}
+.overAll{
+    display: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.buttonCont{
+    text-align: center;
+}
+.margin{
+    padding-left: 10px;
+}
+
+@media only screen 
+  and (min-device-width: 280px)
+  and (max-device-width: 320px) {
+    .img{
+        width: 40px;
+        height: 40px;
+    }
+    .button{
+        margin: 0;
+    }
+}
+
+@media only screen 
+  and (min-device-width: 320px)
+  and (max-device-width: 680px) {
+    .img{
+        width: 60px;
+        height: 60px;
+    }
+    .button{
+        margin: 4px;
+    }
+}
+

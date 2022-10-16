@@ -1,9 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import PokeList from './pages/components/pokeList/pokeList';
+import PokeFinder from './pages/components/pokeFinder/pokeFinder';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+describe('app', () => {
+  test('renders pokeList',()=>{
+    render(<PokeList />);
+    const linkElement = screen.getByText(/Listado de Pokemon/i);
+    expect(linkElement).toBeInTheDocument();
+  }); 
+  test('renders pokeItem',()=>{
+    render(<PokeFinder handleChange={jest.mock} text={''} />);
+    const linkElement = screen.getByPlaceholderText(/Buscar/i);
+    expect(linkElement).toBeInTheDocument();
+  });   
 });

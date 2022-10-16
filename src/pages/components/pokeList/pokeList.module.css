@@ -1,0 +1,92 @@
+.flex{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+p{
+    text-align: start;
+    padding: 0;
+    margin: 0;
+}
+
+.rotate{
+    transform: rotate(45deg);
+}
+
+.rotateBack{
+    transform: rotate(0deg);
+}
+
+.flex>button>span{
+    margin-right: 4px;
+    color: white;
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 600;
+    display: inline-block;
+    transition: 0.4s all ease-in-out;
+}
+
+.table{
+    background-color: white;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    width: 800px;
+    table-layout: fixed;
+}
+
+th{
+    padding: 10px 0;
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 820px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .table{
+        table-layout: auto;
+        width: 100%;
+        font-size: 14px;
+    }
+    th{
+        padding: 8px;
+    }
+}
+
+@media only screen 
+  and (min-device-width: 280px)
+  and (max-device-width: 320px) {
+    .table{
+        width: 100%;
+        font-size: 12px;
+        table-layout: auto;
+    }
+}
+
+th{
+    border: 2px solid #C7CCCF;
+}
+td{
+    border: 2px solid #C7CCCF;
+}
+
+.overAll{
+    position: fixed;
+    top: 50%; 
+    right: 50%;
+    transform: translate(50%,-50%);
+    z-index: 2;
+}
+
+.back{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    opacity: .4;
+    z-index: 1;
+}

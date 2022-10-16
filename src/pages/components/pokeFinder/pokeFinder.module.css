@@ -1,0 +1,17 @@
+.finder{
+    position: relative;
+}
+
+.icon{
+    position: absolute;
+    top: 7px;
+    left: 10px;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 600;
+}
+
+.finderInput{
+    height: 20px;
+    padding-left: 36px;
+    border-radius: 2px;
+}

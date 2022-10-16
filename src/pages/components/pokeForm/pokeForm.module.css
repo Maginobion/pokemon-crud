@@ -1,0 +1,92 @@
+.formCont{
+    font-size: 20px;
+    border: 2px solid #C7CCCF;
+    color: #4D5758;
+    margin-bottom: 15px;
+    background-color: white;
+    padding: 20px;
+}
+
+.interiorGrid{
+    display: grid;
+    justify-content: center;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2,1fr);
+    row-gap: 25px;
+    column-gap: 100px;
+}
+
+.interiorGrid>div{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonCont{
+    margin-top: 45px;
+    display: flex;
+    justify-content: center;
+    gap:15px;
+}
+.title{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.rangeCont{
+    display: flex;
+}
+
+.buttonCont>button>span{
+    margin-right: 4px;
+    color: white;
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 600;
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 600px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .formCont{
+        font-size: 16px;
+        padding: 8px;
+    }
+    .interiorGrid{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .interiorGrid>div{
+        gap: 4px;
+        vertical-align: middle;
+        align-items: center;
+    }
+    div{
+        vertical-align: middle;
+        align-items: center;
+    }
+    .buttonCont{
+        gap: 8px;
+    }
+}
+
+@media only screen 
+  and (min-device-width: 280px)
+  and (max-device-width: 320px) {
+    .formCont{
+        font-size: 12px;
+        padding: 8px;
+    }
+    .interiorGrid{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .interiorGrid>div{
+        width: 100%;
+    }
+    .buttonCont{
+        gap: 8px;
+    }
+}
