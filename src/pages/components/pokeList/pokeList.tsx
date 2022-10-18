@@ -5,14 +5,19 @@ import PokeItem from '../pokeItem/pokeItem';
 import PokeFinder from '../pokeFinder/pokeFinder';
 import React, { useState } from 'react';
 import PokeForm from '../pokeForm/pokeForm';
+import usePokemons from '../../hooks/usePokemons';
 
 const PokeList = () =>{
 
-    const pokemons = PokemonService.getPokemons()
+    const { pokemons, addPokemon, deletePokemon, editPokemon } = usePokemons()
+
     const [text, setText] = useState<string>('')
     const [open, setOpen] = useState<boolean>(false)
     const [subOpen, setSubOpen] = useState<boolean>(false)
-    const [chosenPokemon,setChosenPokemon] = useState<Pokemon>()
+
+    //DYLÑAAAAAN ACA ESTA EL ERROR
+    const [chosenPokemonId, setChosenPokemonId] = useState<number>()
+    const chosenPokemon = pokemons?.find(poke=>poke.id===chosenPokemonId)
     const filteredPokemons = pokemons?.filter(poke => poke.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()))
     
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +30,10 @@ const PokeList = () =>{
             <div className={styles.flex}>
                 <div>
                     <p>Listado de Pokemon</p>
-                    <PokeFinder text={text} handleChange={handleChange}></PokeFinder>
+                    <PokeFinder 
+                        text={text} 
+                        handleChange={handleChange}
+                    />
                 </div>
                 <button onClick={()=>setOpen(!open)}>
                     <span className={open ? styles.rotateBack : styles.rotate}></span> Nuevo
@@ -33,17 +41,25 @@ const PokeList = () =>{
             </div>
             {
                 open && (
-                    <PokeForm setOpen={setOpen}/>
+                    <PokeForm 
+                        setOpen={setOpen}
+                        method={addPokemon}
+                    />
                 )
             }
             {
                 subOpen && (
-                    <>
-                    
-                    <div className={styles.overAll}>                        
-                        <PokeForm pokemon={chosenPokemon} edit setOpen={setSubOpen}/>                       
-                    </div>
-                    </>                             
+                    <>                   
+                        <div className={styles.overAll}>                        
+                            <PokeForm 
+                                pokemon={chosenPokemon} 
+                                edit
+                                id={chosenPokemonId}
+                                setOpen={setSubOpen}
+                                method={editPokemon}
+                            />                       
+                        </div>
+                    </>        
                 )
             }           
             <table className={styles.table}>
@@ -59,11 +75,15 @@ const PokeList = () =>{
                 <tbody>
                     {
                         filteredPokemons?.map((pokemon:Pokemon)=>{
-                            return <PokeItem 
-                                        pokemon={pokemon} 
-                                        key={pokemon.id}
-                                        setSubOpen={setSubOpen}
-                                        setChosenPokemon={setChosenPokemon}/>                                      
+                            return(
+                                <PokeItem 
+                                    pokemon={pokemon} 
+                                    key={pokemon.id}
+                                    setSubOpen={setSubOpen}
+                                    setChosenPokemon={setChosenPokemonId}
+                                    deletePokemon={deletePokemon}
+                                />  
+                            )                                     
                         })
                     }
                 </tbody>

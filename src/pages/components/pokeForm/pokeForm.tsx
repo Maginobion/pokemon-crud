@@ -1,16 +1,26 @@
-import React, { useState } from 'react'
-import { usePokemons } from '../../services/PokemonService'
+import React, { Key, useState } from 'react'
+import usePokemons from '../../services/PokemonService'
 import FillableType from '../../types/FillableType'
 import Pokemon from '../../types/PokemonType'
 import styles from './pokeForm.module.css'
 
-const PokeForm = ({pokemon,edit=false,id,setOpen}:{pokemon?:Pokemon,edit?:boolean,id?:number, setOpen:(a:boolean)=>void}) =>{
+const PokeForm = ({
+    pokemon,
+    edit=false,
+    id,
+    setOpen,
+    method
+}:{
+    pokemon?:Pokemon,
+    edit?:boolean,
+    id?:number, 
+    setOpen:(a:boolean)=>void,
+    method:(a:FillableType)=>void,
+}) =>{
 
     //if not edit, post
 
     const metodo = edit ? 'Editar' : 'Nuevo'
-    const { getPokemons } = usePokemons();
-    const metodoFunction = edit ? PokemonService.editPokemon : PokemonService.postPokemon
     const [poke, setPoke] = useState<FillableType>({
         name: pokemon?.name || ' ', 
         image: pokemon?.image || ' ', 
@@ -21,10 +31,12 @@ const PokeForm = ({pokemon,edit=false,id,setOpen}:{pokemon?:Pokemon,edit?:boolea
         idAuthor: 1,
         idPoke: id,
     })
+
     const handleFormChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
         if(['attack','defense','hp'].indexOf(e.target.value)+1){
+            console.log(parseInt(e.target.value))
             setPoke({...poke, [e.target.name]: parseInt(e.target.value)})
-        } 
+        }
         else setPoke({...poke, [e.target.name]: [e.target.value]})
     }
 
@@ -77,12 +89,12 @@ const PokeForm = ({pokemon,edit=false,id,setOpen}:{pokemon?:Pokemon,edit?:boolea
                 </div>
             </div>
             <div className={styles.buttonCont}>                
-                    <button onClick={()=>metodoFunction(poke)}>
-                        <span></span> Guardar
-                    </button>                  
-                    <button onClick={()=>setOpen(false)}>
-                        <span></span> Cancelar
-                    </button>           
+                <button onClick={()=>method(poke)}>
+                    <span></span> Guardar
+                </button>                  
+                <button onClick={()=>setOpen(false)}>
+                    <span></span> Cancelar
+                </button>           
             </div>                  
         </div>
     )

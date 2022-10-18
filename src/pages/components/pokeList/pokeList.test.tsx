@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import PokeList from './pokeList';
 
-jest.mock("./../../services/PokemonService.tsx")
+// jest.mock("./../../services/PokemonService.tsx")
 
 describe('pokeList', ()=>{
     test('renders',async () => {

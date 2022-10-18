@@ -23,9 +23,10 @@ describe('pokeItem', () => {
             <table>
                 <tbody>
                     <PokeItem
-                    pokemon={a}
-                    setSubOpen={()=>xd()} 
-                    setChosenPokemon={()=>xd()}/>
+                        pokemon={a}
+                        deletePokemon={()=>xd()}
+                        setSubOpen={()=>xd()} 
+                        setChosenPokemon={()=>xd()}/>
                 </tbody>
             </table>           
         );

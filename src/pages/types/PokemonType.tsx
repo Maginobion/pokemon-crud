@@ -1,7 +1,7 @@
 import { Key } from "react";
 
 type Pokemon = {
-    id: Key,
+    id: number,
     name: string,
     image: string,
     attack: number,

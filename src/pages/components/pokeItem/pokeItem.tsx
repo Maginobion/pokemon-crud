@@ -1,14 +1,25 @@
+import usePokemons from "../../hooks/usePokemons"
 import PokemonService from "../../services/PokemonService"
 import Pokemon from "../../types/PokemonType"
 import styles from "./pokeItem.module.css"
 
-const PokeItem = ({pokemon,setSubOpen,setChosenPokemon}:{pokemon:Pokemon,setSubOpen:(a:boolean)=>void,setChosenPokemon:(a:Pokemon)=>void}) => {
+const PokeItem = ({
+    pokemon,
+    setSubOpen,
+    setChosenPokemon,
+    deletePokemon
+}:{
+    pokemon:Pokemon,
+    setSubOpen:(a:boolean)=>void,
+    setChosenPokemon:(a:number)=>void,
+    deletePokemon:(a:Pokemon)=>void
+}) => {
 
-    const deleteMethod = PokemonService.deletePokemon
     const setWindow = () =>{
         setSubOpen(true)
-        setChosenPokemon(pokemon)
+        setChosenPokemon(pokemon.id)
     }
+
     return(
         <tr className={styles.pokemonCard}>
             <td className={styles.margin}>{pokemon.name}</td>
@@ -25,7 +36,8 @@ const PokeItem = ({pokemon,setSubOpen,setChosenPokemon}:{pokemon:Pokemon,setSubO
                 </button> 
                 <button 
                     className={styles.button} 
-                    onClick={()=>deleteMethod(pokemon.id)}>
+                    onClick={()=>deletePokemon(pokemon)}
+                >
                          
                 </button>
             </td>
