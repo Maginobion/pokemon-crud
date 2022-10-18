@@ -1,5 +1,4 @@
 import styles from './pokeList.module.css'
-import PokemonService from '../../services/PokemonService';
 import Pokemon from '../../types/PokemonType'
 import PokeItem from '../pokeItem/pokeItem';
 import PokeFinder from '../pokeFinder/pokeFinder';
@@ -15,7 +14,6 @@ const PokeList = () =>{
     const [open, setOpen] = useState<boolean>(false)
     const [subOpen, setSubOpen] = useState<boolean>(false)
 
-    //DYLÑAAAAAN ACA ESTA EL ERROR
     const [chosenPokemonId, setChosenPokemonId] = useState<number>()
     const chosenPokemon = pokemons?.find(poke=>poke.id===chosenPokemonId)
     const filteredPokemons = pokemons?.filter(poke => poke.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()))

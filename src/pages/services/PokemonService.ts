@@ -7,10 +7,14 @@ const PokemonService = () =>{
     const uri = 'https://bp-pokemons.herokuapp.com/'
     const extras = '?idAuthor=1/'
 
-    const getPokemons = async ():Promise<Pokemon[]> => {
-        const data : Pokemon[] = await fetch(uri+extras).then(res=>res.json())
-        return data
-    }
+    const getPokemons = useCallback(async ():Promise<[Pokemon[], boolean]> => {
+        const data = await fetch(uri+extras)
+        if(data.ok){
+            const pokes : Pokemon[] = await data.json()
+            return [pokes, true]
+        }
+        return [[], false]
+    },[])
 
     const postPokemon = async (pokemon:FillableType, id?:Key|undefined) =>{
         return await fetch(uri+extras+id,{
@@ -38,8 +42,6 @@ const PokemonService = () =>{
             },
             body: JSON.stringify(pokemon),
         }).catch(err=>console.log(err))
-        .then(()=>window.alert('Editado con éxito.'))
-        .finally(()=>window.location.reload()) 
     }
 
     return {

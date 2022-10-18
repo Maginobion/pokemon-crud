@@ -1,5 +1,4 @@
-import React, { Key, useState } from 'react'
-import usePokemons from '../../services/PokemonService'
+import React, { useState } from 'react'
 import FillableType from '../../types/FillableType'
 import Pokemon from '../../types/PokemonType'
 import styles from './pokeForm.module.css'
@@ -38,6 +37,11 @@ const PokeForm = ({
             setPoke({...poke, [e.target.name]: parseInt(e.target.value)})
         }
         else setPoke({...poke, [e.target.name]: [e.target.value]})
+    }
+
+    const dispatchAndClose = () =>{
+        method(poke)
+        setOpen(false)
     }
 
     return(
@@ -89,7 +93,7 @@ const PokeForm = ({
                 </div>
             </div>
             <div className={styles.buttonCont}>                
-                <button onClick={()=>method(poke)}>
+                <button onClick={()=>dispatchAndClose()}>
                     <span></span> Guardar
                 </button>                  
                 <button onClick={()=>setOpen(false)}>

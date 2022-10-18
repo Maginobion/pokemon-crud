@@ -1,5 +1,3 @@
-import usePokemons from "../../hooks/usePokemons"
-import PokemonService from "../../services/PokemonService"
 import Pokemon from "../../types/PokemonType"
 import styles from "./pokeItem.module.css"
 

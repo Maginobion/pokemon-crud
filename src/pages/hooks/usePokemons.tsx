@@ -1,4 +1,4 @@
-import { Key, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import PokemonService from '../services/PokemonService'
 import FillableType from "../types/FillableType";
 import Pokemon from "../types/PokemonType";
@@ -14,23 +14,20 @@ const usePokemons = () => {
     } = PokemonService()
 
     const getPokemons = useCallback(async (): Promise<any>=>{
-        const pokes = await getPokes()
-        setPokemons(pokes)
-    },[])
+        const [pokes, isok] = await getPokes()
+        if (isok) setPokemons(pokes)
+    },[getPokes])
 
     const addPokemon = (pokemon: FillableType):void =>{
-        postPoke(pokemon)
-        getPokemons()
+        postPoke(pokemon).then(()=>getPokemons())
     }
 
     const editPokemon = (pokemon: FillableType):void =>{
-        editPoke(pokemon)
-        getPokemons()
+        editPoke(pokemon).then(()=>getPokemons())
     }
 
     const deletePokemon = (pokemon: Pokemon):void =>{
-        delPoke(pokemon.id as Key)
-        setPokemons(prev=>prev?.filter(poke=>poke.id!==pokemon.id))
+        delPoke(pokemon.id).then(()=>getPokemons())
     }
 
     useEffect(() => {
